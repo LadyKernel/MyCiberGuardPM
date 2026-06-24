@@ -1,5 +1,7 @@
 # MyCiberGuardPM
-
+<p align="center">
+<img src="assets/logo.jpg" alt="MyCiberGuardPM Banner" />
+</p>
 > Caso de estudio de Project Management — Network Monitor CLI
 
 Monitor ligero de tráfico de red con alertas automáticas vía Telegram para servidores VPS y cloud (GCP, AWS, DigitalOcean).
