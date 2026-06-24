@@ -1,16 +1,39 @@
 # MyCiberGuardPM
+
 <p align="center">
 <img src="assets/logo.jpg" alt="MyCiberGuardPM Banner" />
 </p>
-> Caso de estudio de Project Management — Network Monitor CLI
 
-Monitor ligero de tráfico de red con alertas automáticas vía Telegram para servidores VPS y cloud (GCP, AWS, DigitalOcean).
-
-Repositorio técnico: [LadyKernel/MyIronGuard](https://github.com/LadyKernel/MyIronGuard/tree/main/network-monitor)
+> **Nota:** Este repositorio contiene la documentación de gestión de proyecto (PM) para **Network Monitor CLI**.
+> Código fuente (Open Source): [LadyKernel/MyIronGuard — /network-monitor](https://github.com/LadyKernel/MyIronGuard/tree/main/network-monitor)
 
 ---
 
-## Índice del proyecto
+## El problema (The FinOps Problem)
+
+En el entorno cloud actual (GCP, AWS, Azure), el tráfico de salida (*egress traffic*) es uno de los costes más variables e impredecibles para administradores de sistemas y desarrolladores independientes. Un pico inesperado —ataque, bucle mal gestionado o despliegue defectuoso— puede inflar la factura mensual en horas sin que el proveedor alerte en tiempo real.
+
+**Network Monitor CLI** es una herramienta ligera instalable con un solo comando en cualquier servidor Linux. Monitoriza el tráfico de red, calcula el coste estimado de egress y envía alertas a Telegram únicamente cuando se superan los umbrales configurados — sin spam, sin agentes externos, sin coste adicional de infraestructura.
+
+**Usuario objetivo:** Administradores de sistemas y desarrolladores que gestionan instancias VPS o cloud (GCP, DigitalOcean, AWS Free Tier) y necesitan visibilidad de costes sin la complejidad de herramientas como Datadog o Prometheus.
+
+---
+
+## Resumen ejecutivo
+
+| | |
+|---|---|
+| **Problema** | Falta de visibilidad inmediata del tráfico de egress → coste oculto descubierto en factura |
+| **Solución** | CLI ligera: monitorización en tiempo real + alertas Telegram sin spam |
+| **Stack** | Bash · vnStat · jq · curl · API Telegram |
+| **Arquitecturas** | VPS estándar (`/vps-estandar`) · Google Cloud (`/gcloud`) |
+| **Licencia** | PolyForm Noncommercial License 1.0.0 |
+
+---
+
+## Documentación de gestión de proyecto (PM)
+
+Este repositorio aplica un marco de Project Management completo sobre el desarrollo real del script, como hilo conductor del curso. Desde la definición del problema hasta el cierre con reflexión y lecciones aprendidas.
 
 | # | Sección | Descripción |
 |---|---------|-------------|
@@ -23,18 +46,6 @@ Repositorio técnico: [LadyKernel/MyIronGuard](https://github.com/LadyKernel/MyI
 | 07 | [Roadmap y Métricas](./07-roadmap-metricas/README.md) | Evolución futura del producto y KPIs de éxito |
 | 08 | [Uso Responsable de IA](./08-uso-responsable-ia/README.md) | Cómo se ha utilizado IA en este proyecto |
 | 09 | [Lecciones Aprendidas](./09-lecciones-aprendidas/README.md) | Reflexión y mejoras futuras |
-
----
-
-## Resumen ejecutivo
-
-**Problema:** Los proveedores cloud no alertan de forma inmediata ante picos de tráfico de salida (*egress*). El usuario descubre el problema cuando recibe la factura.
-
-**Solución:** Herramienta CLI ligera instalable con un solo comando, sin consumo notable de recursos, que envía alertas a Telegram únicamente cuando el tráfico supera umbrales críticos configurados por el usuario.
-
-**Tecnología:** Bash · vnStat · jq · curl · API Telegram
-
-**Licencia:** PolyForm Noncommercial License 1.0.0
 
 ---
 
