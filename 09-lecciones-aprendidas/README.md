@@ -20,35 +20,39 @@ Cerrar un proyecto sin reflexionar sobre él es perder la mitad de su valor. Est
 
 ## Lecciones aprendidas — Gestión de proyecto
 
-> *[Completa esta sección con tu reflexión personal. Algunas preguntas que pueden guiarte:]*
-
 **¿Qué aprendiste gestionando este proyecto?**
 
-> *[Por ejemplo: la importancia de definir el alcance antes de empezar a desarrollar, que los riesgos que parecen improbables ocurren en cuanto el entorno cambia, que la documentación es una parte del producto y no un añadido al final...]*
+Lo más importante fue entender que un proyecto no es solo hacer que algo funcione — es saber explicarlo, estructurarlo y documentarlo de forma que otra persona pueda entenderlo, usarlo y continuarlo. Tenía el script funcionando, pero sin estructura de proyecto era solo código en GitHub. El proceso de aplicar PM me obligó a leer bien cómo se organiza un proyecto, a poner por escrito el problema real, los requisitos, los riesgos y el alcance. Eso cambia cómo piensas lo que estás construyendo.
 
 ---
 
 **¿Qué harías distinto si empezaras de cero?**
 
-> *[Por ejemplo: empezar con la arquitectura de doble rama desde el principio en lugar de separarlo a posteriori, definir el .env antes de escribir el primer script, tener la matriz de riesgos antes de llegar a las pruebas...]*
+Intentaría planificarlo antes de escribir la primera línea de código. Este proyecto nació como un script personal para controlar mis gastos en VPS —algo que monté sobre la marcha a medida que aprendía— y la estructura PM llegó después. Si hubiera partido de los requisitos, del usuario objetivo y del alcance definido desde el principio, habría tomado decisiones técnicas más sólidas desde el inicio: la doble arquitectura VPS/GCP, el formato del `.env`, la lógica anti-spam. Todo eso lo fui resolviendo sobre la marcha en lugar de haberlo pensado antes.
 
 ---
 
 **¿Qué fue más difícil: la parte técnica o la de gestión?**
 
-> *[Esta pregunta tiene mucho valor para el evaluador porque demuestra conciencia de que gestionar un proyecto y ejecutarlo técnicamente son habilidades diferentes.]*
+Las dos tuvieron su dificultad, pero por razones distintas. En la parte técnica, aunque tengo base en entornos Linux y sabía lo que quería conseguir, la programación en Bash me costó: la sintaxis, la gestión de errores, hacer que el script se comportara correctamente en distintos entornos. Fui aprendiendo a base de prueba, error y entender por qué fallaba cada cosa.
+
+La parte de gestión fue difícil de otra manera: no es un problema técnico que se resuelve ejecutando un comando. Requiere estructurar el pensamiento, saber qué documentar y cómo expresarlo con criterio de proyecto. Para alguien que viene del mundo técnico, esa capa de abstracción —pensar en stakeholders, en alcance, en riesgos como categorías formales— no es natural al principio. Eso fue lo que más me exigió.
 
 ---
 
 **¿Hubo algún riesgo que se materializó y cómo lo gestionaste?**
 
-> *[El problema de LC_NUMERIC=C es un buen ejemplo: se detectó en pruebas, se documentó como riesgo retroactivamente y se resolvió en v1.1. ¿Hubo algún otro?]*
+Sí, el más claro fue el problema de precisión decimal documentado como R04. En entornos con locale español (`es_ES.UTF-8`), Bash interpreta los números decimales con coma, lo que rompía los cálculos de coste de egress. Se detectó durante las pruebas reales en mi servidor, se identificó la causa raíz y se resolvió añadiendo `LC_NUMERIC=C` al script en la versión v1.1. Es un buen ejemplo de un riesgo que parece improbable hasta que el entorno lo activa — exactamente el tipo de cosa que una matriz de riesgos bien hecha debería anticipar.
 
 ---
 
 ## Lecciones aprendidas — Parte técnica
 
-> *[Lo que te ha enseñado el proyecto sobre Bash, vnStat, la API de Telegram o la gestión de distintos entornos Linux.]*
+Este proyecto me enseñó más de lo que esperaba en el lado técnico. Aprendí a configurar correctamente un servidor VPS desde cero —incluyendo la parte de red, que tiene más matices de los que parecen cuando gestionas varios proveedores con interfaces distintas. Aprendí a programar un script funcional en Bash que resuelve un problema real: monitorizar el tráfico de egress y calcular el coste estimado para no tener sorpresas en la factura mensual.
+
+También aprendí que los entornos importan: el mismo script necesita adaptaciones distintas en un VPS estándar y en Google Cloud, no porque la lógica cambie, sino porque la interfaz de red, el nombre del dispositivo y el comportamiento del sistema difieren entre proveedores. Eso derivó en la arquitectura de doble rama que tiene el repositorio técnico.
+
+Paralelamente, mantengo un repositorio privado con más scripts y un dashboard de uso personal para monitorizar mis propios sistemas. Este proyecto fue parte de ese aprendizaje continuo — la diferencia es que aquí lo documenté con criterio de proyecto en lugar de dejarlo como código sin contexto.
 
 ---
 

@@ -60,7 +60,13 @@ En este proyecto:
 
 ## Reflexión personal
 
-> *[Espacio para añadir tu reflexión personal sobre cómo fue la experiencia de usar IA en el proyecto: qué fue útil, qué tuviste que corregir, qué aprendiste del proceso de revisar y validar.]*
+La IA ha sido clave en dos frentes distintos de este proyecto, y creo que es importante diferenciarlos.
+
+**En la parte técnica**, no tengo una base sólida de programación en Bash. Sí conozco los entornos donde el script tiene que funcionar —VPS, GCP, interfaces de red, variables de entorno— pero la sintaxis y la lógica del script me costaban. Trabajé con la IA describiendo qué necesitaba que hiciera el script, compartiendo los errores que me devolvía la ejecución y pidiéndole que me explicara por qué fallaban y qué significaban. Ese proceso fue de aprendizaje real: no copié código sin más, sino que fui entendiendo qué hacía cada parte, por qué daba error y cómo corregirlo. Si algo no me cuadraba o no funcionaba en mi entorno, lo decía y ajustábamos.
+
+**En la parte de organización PM**, la IA me ayudó a estructurar algo que sin ese apoyo habría quedado desordenado. Sabía lo que había hecho técnicamente —el script funcionaba, había dos arquitecturas, había una licencia— pero no cómo presentarlo con criterio de proyecto. La IA propuso estructura, borrador de contenidos y formato para los README de cada sección. Yo revisé que todo se correspondiera con lo que realmente había ocurrido en el proyecto, ajusté lo que no encajaba y redacté las partes que solo yo podía escribir (como esta reflexión).
+
+El resultado es un repositorio que refleja trabajo real, documentado con rigor. La IA ayudó a expresarlo bien; las decisiones, los problemas reales y las validaciones son míos.
 
 ---
 
