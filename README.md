@@ -4,8 +4,9 @@
 <img src="assets/logo.jpg" alt="MyCiberGuardPM Banner" />
 </p>
 
-> **Nota:** Este repositorio contiene la documentación de gestión de proyecto (PM) para **Network Monitor CLI**.
-> Código fuente (Open Source): [LadyKernel/MyIronGuard — /network-monitor](https://github.com/LadyKernel/MyIronGuard/tree/main/network-monitor)
+**MyCiberGuardPM** es el caso de estudio de Project Management del script **Network Monitor CLI** — una herramienta Bash para monitorizar tráfico de egress en servidores Linux y enviar alertas automáticas a Telegram.
+
+Este repositorio contiene únicamente la documentación PM (contexto, requisitos, riesgos, roadmap…). El código fuente está en un repositorio separado: [LadyKernel/MyIronGuard — /network-monitor](https://github.com/LadyKernel/MyIronGuard/tree/main/network-monitor)
 
 ---
 
@@ -49,5 +50,4 @@ Este repositorio aplica un marco de Project Management completo sobre el desarro
 
 ---
 
-*Proyecto desarrollado como hilo conductor del curso de Project Management — 2026*
-*Autora: LadyKernel*
+*Caso de estudio desarrollado por LadyKernel — Curso de Project Management, 2026*
