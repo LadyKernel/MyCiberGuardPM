@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Repositorio de Código Fuente
+    url: https://github.com/LadyKernel/MyIronGuard
+    about: Para incidencias relacionadas con el código Bash acude al repositorio correspondiente.

@@ -1,0 +1,68 @@
+name: Pre-Public Release Audit
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch: # Permite ejecutar la revisión manualmente antes de cambiar la visibilidad
+
+jobs:
+  security-and-quality-audit:
+    name: Audit Documentation for Public Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Descarga todo el historial para escanear commits previos
+
+      - name: 1. Scan for leaked secrets & credentials (Gitleaks)
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # Gitleaks detectará tokens de bots de Telegram, API keys de AWS/GCP, claves SSH, etc.
+
+      - name: 2. Scan for internal/sensitive keywords
+        run: |
+          echo "Buscando referencias sensibles o rutas internas no deseadas..."
+          PATTERNS='(bot[0-9]{9,10}:[a-zA-Z0-9_-]{35}|chat_id\s*=\s*["0-9-]+|xox[baprs]-|AKIA[0-9A-Z]{16}|AIza[0-9A-Za-z\\-_]{35}|192\.168\.[0-9]{1,3}\.[0-9]{1,3}|10\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3})'
+          
+          # Excluimos el propio workflow de la búsqueda
+          MATCHES=$(grep -rEn --exclude-dir=".git" --exclude-dir=".github" "$PATTERNS" . || true)
+          
+          if [ -n "$MATCHES" ]; then
+            echo "❌ ERROR: Se han encontrado posibles patrones de credenciales o IPs privadas:"
+            echo "$MATCHES"
+            exit 1
+          else
+            echo "✅ No se detectaron patrones sensibles en la documentación."
+          fi
+
+      - name: 3. Verify clean environment (No sensitive/junk files)
+        run: |
+          echo "Comprobando que no existan archivos de entorno, logs o temporales..."
+          FORBIDDEN_FILES=$(find . -type f \( \
+            -name ".env*" -o \
+            -name "*.pem" -o \
+            -name "*.key" -o \
+            -name "*.log" -o \
+            -name ".DS_Store" -o \
+            -name "Thumbs.db" \
+          \) -not -path "*/.git/*")
+          
+          if [ -n "$FORBIDDEN_FILES" ]; then
+            echo "❌ ERROR: Archivos prohibidos encontrados antes de hacer público el repo:"
+            echo "$FORBIDDEN_FILES"
+            exit 1
+          else
+            echo "✅ Estructura limpia de archivos temporales o .env."
+          fi
+
+      - name: 4. Check Markdown links & references
+        uses: gaurav-nelson/github-action-markdown-link-check@v1
+        with:
+          use-quiet-mode: 'yes'
+          check-modified-files-only: 'no'
+          config-file: '.github/linters/mlc_config.json' # Opcional si quieres ignorar urls externas específicas

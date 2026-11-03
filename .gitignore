@@ -1,0 +1,61 @@
+# ==============================================================================
+# MyCiberGuardPM - .gitignore
+# ==============================================================================
+
+# 1. Variables de entorno, credenciales y secretos
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+*.pfx
+*.p12
+
+# 2. Logs, métricas crudas y trazas de ejecución
+*.log
+logs/
+*.out
+*.dump
+*.trace
+network-monitor.log
+vnstat_dump/
+
+# 3. Datos de prueba, mocks y exportaciones de costes
+raw_data/
+test_data/
+*.csv.tmp
+*.xlsx.tmp
+
+# 4. Archivos temporales y borradores de documentación
+drafts/
+wip/
+*.tmp
+*.bak
+*.swp
+*~
+
+# 5. Sistema operativo y metadatos de entorno
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# 6. IDEs y editores de texto
+.idea/
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+*.sublime-project
+*.sublime-workspace
+
+# 7. Caches de herramientas de Markdown / Node / Python (si se usan linters locales)
+.markdownlint-cli2-cache
+node_modules/
+__pycache__/
+*.py[cod]
